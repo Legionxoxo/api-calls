@@ -1,7 +1,7 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const { OPENSUBTITLES_API_KEY } = process.env;
+const { OPENSUBTITLES_API_KEY } = require("../../env");
 
 /**
  * Fetch subtitles from OpenSubtitles API

@@ -1,7 +1,7 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const { GENIUS_API_KEY } = process.env;
+const { GENIUS_API_KEY } = require("../../env");
 
 /**
  * Fetch music details from Genius API

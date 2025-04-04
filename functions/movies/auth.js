@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const { TVDB_API_KEY, TVDB_PIN, TVDB_USERNAME } = process.env;
+const { TVDB_API_KEY, TVDB_PIN, TVDB_USERNAME } = require("../../env");
 
 /**
  * Authenticate with TVDB and return token
