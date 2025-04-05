@@ -10,6 +10,7 @@ router.post("/movie-details", async (req, res) => {
 
     try {
         const movies = req.body.movies;
+        console.log(movies);
         if (!Array.isArray(movies)) {
             success = false;
             msg = "Invalid request format. Expecting an array of movies.";

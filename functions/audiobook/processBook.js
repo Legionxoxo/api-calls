@@ -1,8 +1,10 @@
 const searchOpenLibrary = require("./searchOpenLibrary");
+const getWorkDetails = require("./getWorkDetails");
 
 /**
  * Process a single book title to fetch details
  */
+
 const processBook = async ({ name = "Unknown", title, year }) => {
     if (!title) {
         return {
@@ -28,19 +30,23 @@ const processBook = async ({ name = "Unknown", title, year }) => {
             };
         }
 
-        const bookData = openLibraryData.docs[0]; // Get the first match
+        const bookData = openLibraryData.docs[0];
+        const workKey = bookData.key; // e.g. "/works/OL45883W"
+        const id = workKey?.replace("/works/", "") || null;
+        const description = workKey ? await getWorkDetails(workKey) : null;
+
         return {
+            id,
             name,
             title: bookData.title || title,
-            author: bookData.author_name
-                ? bookData.author_name.join(", ")
-                : "Unknown",
+            author: bookData.author_name?.join(", ") || "Unknown",
             first_publish_year: bookData.first_publish_year || year || null,
             cover_image: bookData.cover_i
                 ? `https://covers.openlibrary.org/b/id/${bookData.cover_i}-L.jpg`
                 : null,
             ebook_available: bookData.ebook_count_i > 0,
             audiobook_available: bookData.has_fulltext,
+            description: description || "No description available.",
         };
     } catch (error) {
         console.error(

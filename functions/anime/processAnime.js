@@ -20,6 +20,7 @@ const processAnime = async (anime) => {
             ? {
                   success: true,
                   msg: "Anime details fetched successfully",
+                  id: animeData.id,
                   title: animeData.title.english || animeData.title.romaji,
                   year: animeData.startDate.year || "Unknown",
                   genres: animeData.genres || [],

@@ -26,6 +26,7 @@ const processMusic = (musicData, year, artist) => {
     if (!bestMatch) return null;
 
     return {
+        id: bestMatch.id,
         albumTitle: bestMatch.title,
         artist: bestMatch.primary_artist.name,
         releaseYear: bestMatch.release_date
